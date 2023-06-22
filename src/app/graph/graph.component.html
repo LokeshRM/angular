@@ -1,0 +1,18 @@
+
+<div class="container">
+    <div echarts [options]="options | async" class="demo-chart" (chartContextMenu)="onChartrightClick($event)" 
+    (chartDblClick)="onChartClick($event)"></div>
+    <h1>demo</h1>
+
+    <div style="visibility: hidden; position: fixed;"
+    [style.left.px]="menuTopLeftPosition.x"
+    [style.top.px]="menuTopLeftPosition.y"
+    [matMenuTriggerFor]="rightMenu"></div>
+    
+    <mat-menu #rightMenu="matMenu">
+      <ng-template matMenuContent let-item="item">
+        <button mat-menu-item>Link 1</button>
+        <button mat-menu-item>Link 2</button>
+      </ng-template>
+    </mat-menu>
+</div>
