@@ -1,85 +1,74 @@
-{ "datai" : {
-    "name": "flare",
-    "children": [
-     {
-      "name": "analytics",
-      "value" : "lokesh",
-      "children": [
-       {
-        "name": "cluster",
-        "children": [
-         {"name": "AgglomerativeCluster", "value": 3938},
-         {"name": "CommunityStructure", "value": 3812},
-         {"name": "HierarchicalCluster", "value": 6714},
-         {"name": "MergeEdge", "value": 743}
-        ]
-       }
+{
+    "data": {
+      "nodes": [
+        {
+          "name": "Node 1",
+          "value" : "source : dataset"
+        },
+        {
+          "name": "Node 2"
+        },
+        {
+          "name": "Node 3"
+        },
+        {
+          "name": "Node 4"
+        },
+        {
+          "name": "Node 5"
+        },
+        {
+          "name": "Node 6"
+        },
+        {
+          "name": "Node 7"
+        },
+        {
+          "name": "Node 8"
+        }
+      ],
+      "links": [
+        {
+          "source": 0,
+          "target": 1
+        },
+        {
+          "source": 1,
+          "target": 2
+        },
+        {
+          "source": 2,
+          "target": 3
+        },
+        {
+          "source": 3,
+          "target": 4
+        },
+        {
+          "source": 4,
+          "target": 5
+        },
+        {
+          "source": 5,
+          "target": 6
+        },
+        {
+          "source": 6,
+          "target": 7
+        },
+        {
+          "source": 7,
+          "target": 0
+        },
+        {
+          "source": 3,
+          "target": 5
+        },
+        {
+          "source": 2,
+          "target": 7
+        }
       ]
-     },
-     {
-      "name": "animate",
-      "children": [
-       {"name": "Easing", "value": 17010},
-       {"name": "FunctionSequence", "value": 5842},
-       {
-        "name": "interpolate",
-        "children": [
-         {"name": "ArrayInterpolator", "value": 1983},
-         {"name": "ColorInterpolator", "value": 2047}
-        ]
-       },
-       {"name": "ISchedulable", "value": 1041},
-       {"name": "Parallel", "value": 5176},
-       {"name": "Pause", "value": 449}
-      ]
-     },
-     {
-      "name": "data",
-      "children": [
-       {
-        "name": "converters"
-       },
-       {"name": "DataField", "value": 1759}
-      ]
-     },
-     {
-      "name": "display",
-      "children": [
-       {"name": "DirtySprite", "value": 8833},
-       {"name": "LineSprite", "value": 1732},
-       {"name": "RectSprite", "value": 3623},
-       {"name": "TextSprite", "value": 10066}
-      ]
-     },
-     {
-      "name": "flex",
-      "children": [
-       {"name": "FlareVis", "value": 4116}
-      ]
-     },
-     {
-      "name": "physics",
-      "children": [
-       {"name": "DragForce", "value": 1082},
-       {"name": "Spring", "value": 2213},
-       {"name": "SpringForce", "value": 1681}
-      ]
-     },
-     {
-      "name": "query",
-      "children": [
-       {"name": "AggregateExpression", "value": 1616}
-      ]
-     },
-     {
-      "name": "scale",
-      "children": [
-       {"name": "IScaleMap", "value": 2105},
-       {"name": "LinearScale", "value": 1316}
-      ]
-     }
-     
-    ]
-}
-    
-   }
+    }
+  }
+  

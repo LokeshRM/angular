@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -6,89 +6,84 @@ import type { EChartsOption } from 'echarts';
 import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
-  selector: 'app-graph',
-  templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.css']
+    selector: 'app-graph',
+    templateUrl: './graph.component.html',
+    styleUrls: ['./graph.component.css'],
 })
 
 export class GraphComponent {
-  options: Observable<EChartsOption>;
-  constructor(private http: HttpClient) {}
-  menuTopLeftPosition =  {x: 0, y: 0}
-  @ViewChild(MatMenuTrigger, {static: true}) matMenuTrigger: MatMenuTrigger;
+    options: Observable<EChartsOption>;
+    constructor(private http: HttpClient) {}
+    menuTopLeftPosition = { x: 0, y: 0 };
+    @ViewChild(MatMenuTrigger, { static: true }) matMenuTrigger: MatMenuTrigger;
 
-  onChartClick(ec : any){
-    console.log(ec.event.event);
-      this.menuTopLeftPosition.x = ec.event.event.clientX;
-      this.menuTopLeftPosition.y = ec.event.event.clientY;
-      this.matMenuTrigger.openMenu();
-  }
-  onChartrightClick(ec : any){
-    console.log(ec.event.event);
-    window.open("//www.google.com", "_blank");
-  }
+    onChartClick(ec: any) {
+        console.log(ec.event.event);
+        this.menuTopLeftPosition.x = ec.event.event.clientX;
+        this.menuTopLeftPosition.y = ec.event.event.clientY;
+        this.matMenuTrigger.openMenu();
+    }
+    onChartrightClick(ec: any) {
+        console.log(ec.event.event);
+        window.open('//www.google.com', '_blank');
+    }
 
-  ngOnInit(): void {
-    this.options = this.http.get<any>('https://third-picturesque-stew.glitch.me/datai', { responseType: 'json' }).pipe(
-      map(data => {
-        data.children.forEach(function (
-          datum: { collapsed: boolean },
-          index: number
-        ) {
-          index % 2 === 0 && (datum.collapsed = true);
-        });
-        return {
-          tooltip: {
-            trigger: 'item',
-            triggerOn: 'mousemove',
-            formatter: '<h3>{b}</h3>{c}',
-            backgroundColor : 'rgba(50,50,50,0.2)',
-            padding: [
-                2,  
-                3, 
-                2,  
-                3, 
-            ]
-
-          },
-          series: [
-            { itemStyle : {
-                
-            },
-              type: 'tree',
-              data: [data],
-              top: '1%',
-              left: '7%',
-              bottom: '1%',
-              right: '20%',
-              roam : true,
-              emphasis: {
-                focus: 'series',
-                blurScope: 'global'
-            },
-              edgeShape : "polyline",
-              edgeForkPosition : "10%",
-              symbolSize: 30,
-              label: {
-                position: 'left',
-                verticalAlign: 'middle',
-                align: 'right',
-                fontSize: 9,
-              },
-              leaves: {
-                label: {
-                  position: 'right',
-                  verticalAlign: 'middle',
-                  align: 'left',
-                },
-              },
-              expandAndCollapse: true,
-              animationDuration: 550,
-              animationDurationUpdate: 750,
-            },
-          ],
-        };
-      })
-    );
-  }
+    ngOnInit(): void {
+        this.options = this.http
+            .get<any>('https://jsonhost.glitch.me/data', {
+                responseType: 'json',
+            })
+            .pipe(
+                map((data) => {
+                    return {
+                        tooltip: {},
+                        animationDurationUpdate: 1500,
+                        animationEasingUpdate: 'quinticInOut',
+                        series: [
+                            {
+                                type: 'graph',
+                                layout: 'circular',
+                                symbolSize: 50,
+                                roam: true,
+                                circular: {
+                                    rotateLabel: true
+                                  },
+                                  emphasis : {
+                                    focus : "adjacency",
+                                    blurScope: 'global',
+                                    itemStyle: {
+                                        color : "#000"
+                                    },
+                                    lineStyle: {
+                                        color : "#000"
+                                    }
+                                  },
+                                blur : {
+                                    lineStyle:{
+                                        color : "#fff", 
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)',
+                                        shadowBlur: 10,
+                                        curveness : 0.2
+                                    }
+                                },
+                                label: {
+                                    show: true,
+                                },
+                                edgeSymbol: ['circle', 'arrow'],
+                                edgeSymbolSize: [4, 10],
+                                edgeLabel: {
+                                    fontSize: 20,
+                                },
+                                data: data.nodes,
+                                links: data.links,
+                                lineStyle: {
+                                    opacity: 0.9,
+                                    width: 2,
+                                },
+                            },
+                        ],
+                    };
+                })
+            );
+    }
 }
